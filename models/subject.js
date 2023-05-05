@@ -8,6 +8,11 @@ const subject = new Schema({
     code: {
         type: String,
         required: false
+    },
+    department: {
+        type: Schema.Types.ObjectId,
+        required: false,
+        ref: 'department'
     }
 
 }, { timestamps: true });

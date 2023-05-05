@@ -1,16 +1,12 @@
 import { Router } from "express";
-import department from "../models/department.js";
-import subject from "../models/subject.js";
+import { index, create, store, show } from "../controller/subjects.js";
 
 const router = new Router();
 
-router.get('/', async (req, res) => {
-    const subjects = await subject.find().lean();
+router.get('/', index);
+router.get('/create', create);
+router.post('/', store);
 
-    console.log(subjects)
-
-    res.render('subjects/all', { subjects })
-});
-
+router.get('/:_id', show);
 
 export default router;

@@ -8,17 +8,18 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-const mongoConectionUrl = 'mongodb://localhost:27017/project';
 
 mongoose.connect(process.env.mongoConectionUrl)
 
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
-app.use('/subjects',subjectsRouter)
+app.use('/subjects', subjectsRouter)
 
 
 app.listen(process.env.port, () => {
