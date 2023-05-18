@@ -8,12 +8,20 @@
 
 {{#each subjects}}
 
-<div>
+<div class="d-flex justify-content-between">
     <h3>
         <a href="/subjects/{{_id}}">
             {{name}}
         </a>
     </h3>
+    <div>
+        <a href="/subjects/{{_id}}/edit">
+            Edit
+        </a>
+        | <form action="/subjects/{{_id}}?_method=DELETE" method="POST">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
 </div>
 
 <hr>
