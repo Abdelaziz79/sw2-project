@@ -1,8 +1,12 @@
+import jwt from 'jsonwebtoken'
+
 import subject from "../models/subject.js";
 import department from '../models/department.js'
 
 export const index = async (req, res) => {
-    const subjects = await subject.find({}, { name: 1 }).lean();
+
+    const subjects = await subject.find({ doctor: req.user._id }, { name: 1 }).lean();
+
     res.render('subjects/index', { subjects })
 };
 
@@ -33,6 +37,7 @@ export const store = async (req, res) => {
         name,
         code,
         department,
+        doctor: req.user._id,
     });
     res.redirect('/subjects');
 };
